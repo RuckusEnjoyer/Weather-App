@@ -11,28 +11,37 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <aside id="search">
-        <section>
+    <div>
+        <aside id="search-area">
             <h2>Search For A City:</h2>
-            <textarea placeholder="City Name"></textarea>
+            <input id="search" placeholder="City Name"></input>
             <button>Search</button>
-        </section>
-    </aside>
-    <main>
-        <section class="city-desc">
+            
+            <section id="results">
 
-        </section>
-        <section class="weather">
-            <h3>5-Day Forecast</h3>
-            <div id="5-days">
-
-            </div>
-        </section>
-    </main>
+            </section>
+        </aside>
+        <main>
+            <section class="city-desc">
+                <h2 id="city-name"></h2>
+                <p id="humidity"></p>
+                <p id="temperature"></p>
+                <p id="wind"></p>
+            </section>
+            <section class="weather">
+                <h3>5-Day Forecast</h3>
+                <div id="5-days">
+    
+                </div>
+            </section>
+        </main>
+    </div>
     <footer>
 
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
