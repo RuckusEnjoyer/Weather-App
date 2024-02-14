@@ -23,7 +23,7 @@ $(document).ready(function() {
   });
 
 var getWeather = function(searchCity) {
-  var geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=1&appid=6475b3b0cca2c5c3858a7b09aadefc7c`;
+  var geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=1&appid=6475b3b0cca2c5c3858a7b09aadefc7c`;
 
   fetch(geoUrl)
   .then(function(response){
