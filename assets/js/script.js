@@ -90,7 +90,7 @@ var getWeather = function(searchCity) {
       tempEl.text("Temperature: " + temp);
       windEl.text("Wind Speed: " + wind);
 
-      // Display the forecast for the next five days
+      // Display the forecast for the next four* days, since i only have a free subscription :(
         for (let i = 8; i < data.list.length; i += 8) {
             let forecast = data.list[i];
             let date = new Date(forecast.dt * 1000).toLocaleDateString();
