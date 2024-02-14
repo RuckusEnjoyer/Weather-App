@@ -67,9 +67,9 @@ var getWeather = function(searchCity) {
             let date = new Date(forecast.dt * 1000).toLocaleDateString();
             let temp = forecast.main.temp;
             let humidity = forecast.main.humidity;
-
+            // let cardEl = $('<div>').addClass('5dayscard')
             let forecastEl = $('<div>').addClass('forecast');
-            let dateEl = $('<p>').text('Date: ' + date);
+            let dateEl = $('<p>').text(date).addClass('dateEl');
             let tempEl = $('<p>').text('Temp: ' + temp);
             let humidityEl = $('<p>').text('Humidity: ' + humidity);
 
