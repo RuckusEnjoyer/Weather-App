@@ -59,6 +59,24 @@ input {
     width: 157vh;
 }
 
+#city-name {
+    padding: 20px;
+    background-color: var(--color3);
+    color: var(--lighter);
+    font-family: monospace;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.city-desc p {
+    background-color: var(--light);
+    padding: 20px;
+    color: var(--color2);
+    font-family: monospace;
+    width: 30vw;
+    font-size: 20px
+}
+
 /* footer decoration */
 footer{
     background-image: linear-gradient(45deg, var(--color2), var(--color1));
