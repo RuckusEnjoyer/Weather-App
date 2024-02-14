@@ -1,9 +1,28 @@
 const searchBtn = $('#search-btn');
 let cityNameEl = $('#city-name');
+let results = $('#results')
 
-var getWeather = function() {
-  var searchCity = $('#search').val();
+function createCityButton(searchCity) {
+    var cityBtn = $('<button>').text(searchCity).addClass('city-btn');
+    results.append(cityBtn);
+}
 
+$(document).ready(function() {
+    var savedSearches = JSON.parse(localStorage.getItem('searches'));
+    if (savedSearches) {
+      savedSearches.forEach(function(searchCity) {
+        createCityButton(searchCity);
+      });
+      
+      if (savedSearches.length > 0) {
+        var lastSearch = savedSearches[savedSearches.length - 1];
+        $('#search').val(lastSearch);
+        getWeather(lastSearch);
+      }
+    }
+  });
+
+var getWeather = function(searchCity) {
   var geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=1&appid=6475b3b0cca2c5c3858a7b09aadefc7c`;
 
   fetch(geoUrl)
@@ -31,6 +50,7 @@ var getWeather = function() {
       let windEl = $('#wind');
       let fiveDaysEl = $('#5-days');
 
+      fiveDaysEl.empty()
       // Storing data in variables
       let humidity = data.list[0].main.humidity; // Use data.list[0].main.humidity to get the humidity
       let temp = data.list[0].main.temp; // Use data.list[0].main.temp to get the temperature
@@ -56,8 +76,30 @@ var getWeather = function() {
             forecastEl.append(dateEl, tempEl, humidityEl);
             fiveDaysEl.append(forecastEl);
         }
-        })
-  })
+
+        if (!results.find(`button:contains(${searchCity})`).length) {
+            createCityButton(searchCity)
+        }
+    })
+
+    })
 }
 
-searchBtn.on('click', getWeather);
+$(document).on('click', '.city-btn', function() {
+  getWeather($(this).text());
+});
+
+searchBtn.on('click', function() {
+    var searchCity = $('#search').val();
+    
+    // Retrieve the existing searches from localStorage
+    var searches = JSON.parse(localStorage.getItem('searches')) || [];
+    
+    // Add the new search to the array
+    searches.push(searchCity);
+    
+    // Save the updated array to localStorage
+    localStorage.setItem('searches', JSON.stringify(searches));
+    
+    getWeather(searchCity);
+  });
