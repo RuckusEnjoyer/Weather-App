@@ -94,16 +94,18 @@ var getWeather = function(searchCity) {
         for (let i = 8; i < data.list.length; i += 8) {
             let forecast = data.list[i];
             let date = new Date(forecast.dt * 1000).toLocaleDateString();
+            let weather = forecast.weather[0].main
             let temp = forecast.main.temp;
             let humidity = forecast.main.humidity;
             
             // let cardEl = $('<div>').addClass('5dayscard')
             let forecastEl = $('<div>').addClass('forecast');
             let dateEl = $('<p>').text(date).addClass('dateEl');
+            let weatherEl = $('<p>').text("Weather: " + weather)
             let tempEl = $('<p>').text('Temp: ' + temp);
             let humidityEl = $('<p>').text('Humidity: ' + humidity);
 
-            forecastEl.append(dateEl, tempEl, humidityEl);
+            forecastEl.append(dateEl, weatherEl, tempEl, humidityEl);
             fiveDaysEl.append(forecastEl);
         }
 
